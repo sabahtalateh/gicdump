@@ -1,0 +1,78 @@
+.cell {
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+    width: 300px;
+    min-width: 300px;
+    padding: 8px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    white-space: break-spaces;
+    cursor: default;
+}
+
+.cell.selected {
+    background-color: #FDF6B2;
+    border-color: #FACA15;
+}
+
+.cell.selected::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 8px;
+    background-color: #FACA15;
+    height: 100%;
+}
+
+.cell .name {
+    font-size: 10.5px;
+    background-color: #FDF6B2;
+    display: inline-block;
+}
+
+.cell .type {
+    font-size: 13px;
+    display: inline-block;
+}
+
+.cell .code {
+    display: inline-block;
+    font-size: 10.5px;
+    tab-size: 2;
+    height: 50px;
+    overflow: scroll;
+    /* border: 1px solid red; */
+    max-width: 288px;
+}
+
+.cell .border {
+    position: absolute;
+    top: 100%;
+    right: -1px;
+    width: 1px;
+    height: 100vh;
+    background-color: #E5E7EB;
+}
+
+.cell .overlay {
+    position: absolute;
+    background: white;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    text-align: center;
+    z-index: 10;
+    opacity: .65;
+}
+
+.cell .overlay .text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #D1D5DB;
+}
