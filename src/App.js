@@ -1,54 +1,91 @@
-import { useState } from 'react'
+import './App.css'
 
-import Table from './Table'
-import { TableContext } from "./context"
-import Overview from './Overview'
-import { Routes, Route, Link } from 'react-router-dom'
-import { files, registry } from '.'
+import {useState} from 'react'
+import {Routes, Route, Link, useLocation} from 'react-router-dom'
+import Pluralize from 'pluralize'
 
-function App({ initTable }) {
-  const [table, setTable] = useState(initTable)
-  const expandComponent = (col, type, id) => {
-    let newTable = table.slice(0, col + 1)
-    newTable[col].forEach((c) => { c.selected = c.type === type && c.id === id })
+import {Context, expandComponent, shrinkComponent} from './context'
+import ComponentsTable from './ComponentsTable/Table'
+import Stages from './Stages/Stages'
+import ComponentsIcon from './Icons/Components'
+import ArrowsSpinIcon from './Icons/ArrowsSpin'
+import Search from './Search'
 
-    let c = registry.find((c) => c.type === type && c.id === id)
-    if (c.direct_deps != null) {
-      var deps = c.direct_deps.map((d) => registry.find((c) => c.type === d.type && c.id === d.id))
-      newTable.push(deps.map((c) => ({
+const filterComponents = ({components, search, selected}) => {
+    const filtered = components.filter((c) => {
+        if (selected !== undefined && c.type === selected.type && c.id === selected.id) {
+            return true
+        }
+
+        search = search.toLowerCase()
+        const type = c.type.toLowerCase()
+        const id = c.id.toLowerCase()
+
+        return type.includes(search) || id.includes(search)
+    })
+
+    return filtered.map(c => ({
         type: c.type,
         id: c.id,
-        path: c.file,
-        file: files[c.file_full_path],
-        line_start: c.line_start,
-        line_end: c.line_end,
-      })))
+        selected: selected !== undefined && c.type === selected.type && c.id === selected.id,
+    }))
+}
+
+function App({components}) {
+    const [componentsTable, setComponentsTable] = useState([
+        components.map((c) => ({type: c.type, id: c.id, selected: false}))
+    ])
+    const [componentSearch, setComponentSearch] = useState('')
+    const [stageSearch, setStageSearch] = useState('')
+
+    const loc = useLocation()
+    const componentsSelectClass = (loc.pathname === '/') ? 'selected' : ''
+    const stagesSelectClass = (loc.pathname === '/stages') ? 'selected' : ''
+
+    let searchValue, setSearchValue
+    if (loc.pathname === '/') {
+        searchValue = componentSearch
+        setSearchValue = function (search) {
+            setComponentSearch(search)
+            const selected = componentsTable[0].find((c) => c.selected)
+            setComponentsTable([
+                filterComponents({components, search, selected}),
+                ...componentsTable.slice(1)
+            ])
+        }
     } else {
-      newTable.push([])
+        searchValue = stageSearch
+        setSearchValue = setStageSearch
     }
 
-    setTable(newTable)
-  }
-
-  const shrinkComponent = (col) => {
-    let newTable = table.slice(0, col + 1)
-    newTable[col].forEach((c) => { c.selected = false })
-    setTable(newTable)
-  }
-
-  return (
-    <TableContext.Provider value={{ expandComponent, shrinkComponent }}>
-      <header>
-        <Link to='/'>Overview</Link>
-        <Link to='/table'>Table</Link>
-      </header>
-      <Routes>
-        <Route path='/' element={<Overview />}></Route>
-        <Route path='/table' element={<Table data={table} />}></Route>
-        <Route path='*' element={<Overview />}></Route>
-      </Routes>
-    </TableContext.Provider>
-  );
+    return (<Context.Provider value={{
+        expandComponent: expandComponent({table: componentsTable, setTable: setComponentsTable}),
+        shrinkComponent: shrinkComponent({table: componentsTable, setTable: setComponentsTable}),
+    }}>
+        <header className='header'>
+            <Link className='link' to='/'>
+                <div className={`section ${componentsSelectClass}`}>
+                    <div className='icon'><ComponentsIcon/></div>
+                    <div
+                        className='section-header'>{components.length} {Pluralize('component', components.length)}</div>
+                </div>
+            </Link>
+            <Link className='link' to='/stages'>
+                <div className={`section ${stagesSelectClass}`}>
+                    <div className='icon'><ArrowsSpinIcon/></div>
+                    <div className='section-header'>{1} {Pluralize('stage', 1)}</div>
+                </div>
+            </Link>
+            <a className='link'>
+                <Search value={searchValue} setValue={setSearchValue}/>
+            </a>
+        </header>
+        <Routes>
+            <Route path='/' element={<ComponentsTable data={componentsTable} rows={components.length}/>}></Route>
+            <Route path='/stages' element={<Stages/>}></Route>
+            <Route path='*' element={<ComponentsTable data={componentsTable} rows={components.length}/>}></Route>
+        </Routes>
+    </Context.Provider>);
 }
 
 export default App

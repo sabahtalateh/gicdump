@@ -1,7 +1,8 @@
 import {useContext} from 'react'
-import './Cell.css'
 
-import {TableContext} from './context'
+import './Cell.css'
+import {Context} from '../context'
+import InfoIcon from "../Icons/Info";
 
 // import SyntaxHighlighter from 'react-syntax-highlighter'
 // import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
@@ -39,13 +40,12 @@ function trimLeadingTabs(s, n) {
 }
 
 function Cell({col, data, selected, lastRow}) {
-    const {expandComponent, shrinkComponent} = useContext(TableContext)
+    const {expandComponent, shrinkComponent} = useContext(Context)
 
-    let cls = ['cell']
-    if (selected) {
-        cls.push('selected')
-    }
-    const border = lastRow ? <div className='border'></div> : <></>
+    const classSelected = (selected) ? 'selected' : ''
+    const classFirst = (col === 0) ? 'first' : ''
+    const classSecond = (col === 1) ? 'second' : ''
+    const border = lastRow ? <div className={`border ${classFirst}`}></div> : <></>
 
     // let code_lines = data.file.slice(data.line_start, data.line_end)
     // let nTabs = 0
@@ -59,13 +59,16 @@ function Cell({col, data, selected, lastRow}) {
 
     return <>
         <div
-            className={cls.join(' ')}
+            className={`cell ${classSelected} ${classFirst} ${classSecond}`}
             onClick={() => {
-                selected ? shrinkComponent(col) : expandComponent(col, data.type, data.id)
+                selected ? shrinkComponent({col}) : expandComponent({col, type: data.type, id: data.id})
             }}>
             <div className='name'>{name(data.id)}</div>
             <br/>
             <div className='type'>{data.type}</div>
+            <div className='actions'>
+                <div className='info'><InfoIcon/></div>
+            </div>
             {/* <code>{code}</code> */}
 
             {/* <SyntaxHighlighter className='code' language='go' style={docco}>
@@ -77,12 +80,19 @@ function Cell({col, data, selected, lastRow}) {
     </>
 }
 
-function Empty({border, overlay}) {
-    const b = border ? <div className='border'></div> : <></>
+function Empty({col, border, overlay}) {
+    const classFirst = (col === 0) ? 'first' : ''
+
+    const b = border ? <div className={`border ${classFirst}`}></div> : <></>
     const o = overlay ? <div className='overlay'>
         <div className='text'>No Components</div>
     </div> : <></>
-    return <div className='cell'>{o}{b}</div>
+    return <div className={`cell ${classFirst}`}>
+        <div className='name'></div>
+        <br/>
+        <div className='type'></div>
+        {o}{b}
+    </div>
 }
 
 export {Cell, Empty}

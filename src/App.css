@@ -1,0 +1,58 @@
+.header {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    width: 1080px;
+    margin: auto;
+}
+
+.header .link {
+    color: inherit;
+    text-decoration: inherit;
+    display: inline-block;
+}
+
+.header .section {
+    position: relative;
+    display: inline-block;
+    background: #F3F4F6;
+    /*background: red;*/
+    border-radius: 6px;
+    margin: 4px;
+    padding: 8px 8px 8px 36px;
+    vertical-align: top;
+    border-bottom: 2px solid #F3F4F6;
+    border-right: 2px solid #F3F4F6;
+}
+
+.header .section.search {
+    padding: 5px 7px 4px 32px;
+    line-height: .3em;
+}
+
+.header .section.search .search-input {
+    font-size: 14px;
+    width: 300px;
+}
+
+.header .section.search .search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.125rem #FACA15;
+}
+
+.header .section .icon svg {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.header .section.selected {
+    background: #FDF6B2;
+    border-color: #FACA15;
+}
+
+.header .section .section-header {
+    font-weight: bold;
+}
