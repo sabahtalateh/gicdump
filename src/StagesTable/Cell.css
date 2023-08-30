@@ -1,0 +1,86 @@
+.table.stages .cell {
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+    width: 280px;
+    min-width: 280px;
+    padding: 8px;
+    border-top: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    white-space: break-spaces;
+    cursor: default;
+}
+
+.table.stages .cell.first {
+    border-right-width: 6px;
+}
+
+.table.stages .cell.second.selected::before {
+    left: -6px;
+}
+
+.table.stages .cell .name {
+    font-size: 11px;
+    background-color: #FDF6B2;
+    display: inline-block;
+}
+
+.table.stages .cell .type {
+    font-size: 13px;
+    display: inline-block;
+}
+
+.table.stages .cell .actions {
+    position: absolute;
+    top: calc(50% - 15px);
+    right: 6px;
+    display: none;
+}
+
+.table.stages .cell:hover .actions {
+    display: block;
+}
+
+.table.stages .cell .actions .info {
+    cursor: pointer;
+}
+
+.table.stages .cell .actions .info svg {
+    width: 30px;
+    height: 30px;
+    fill: #D1D5DB;
+}
+
+.table.stages .cell.selected .actions .info svg {
+    fill: #FACA15;
+}
+
+.table.stages .cell .border {
+    position: absolute;
+    top: 100%;
+    right: -6px;
+    width: 6px;
+    height: 100vh;
+    background-color: #E5E7EB;
+}
+
+.table.stages .cell .overlay {
+    position: absolute;
+    background: white;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    text-align: center;
+    z-index: 10;
+    opacity: .65;
+}
+
+.table.stages .cell .overlay .text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #D1D5DB;
+}

@@ -1,20 +1,25 @@
-.table.components .row {
+.table.stages .row {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
     color: #111827;
     display: table;
     table-layout: fixed;
 }
 
-.table.components .row.total {
-    font-size: 11px;
-    height: 100%;
+.table.stages .row.stages-header .cell {
+    background-color: #FDF6B2;
+    border-color: #FACA15;
+    border-top-width: 1px;
 }
 
-.table.components .row:nth-child(2n) {
+.table.stages .row .cell {
+    border-right-width: 6px;
+}
+
+.table.stages .row:nth-child(2n) {
     background-color: #F9FAFB;
 }
 
-.table.components .row .top-border {
+.table.stages .row .top-border {
     position: absolute;
     width: 100%;
     height: 1px;

@@ -10,11 +10,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 
 export const registry = window.data.initialized
 export const files = window.data.files
+export const stages = window.data.stages
+export const stageImpls = window.data.stage_impls
 
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App components={registry}/>
+            <App components={registry} files={files}/>
         </BrowserRouter>
     </React.StrictMode>
 )

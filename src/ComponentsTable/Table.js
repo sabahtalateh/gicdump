@@ -40,7 +40,7 @@ function ComponentsTable({data, rows}) {
         out.push(<Row key={i} data={row} firstRow={i === 0} lastRow={i === rows - 1}/>)
     }
 
-    return (<div className='table'>{out}</div>);
+    return (<div className='table components'>{out}</div>);
 }
 
 export default ComponentsTable

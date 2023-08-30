@@ -1,3 +1,14 @@
+.backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: .3;
+    z-index: 100;
+}
+
 .header {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
     font-size: 14px;
@@ -15,7 +26,6 @@
     position: relative;
     display: inline-block;
     background: #F3F4F6;
-    /*background: red;*/
     border-radius: 6px;
     margin: 4px;
     padding: 8px 8px 8px 36px;

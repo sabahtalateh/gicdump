@@ -1,0 +1,51 @@
+.component-info {
+    position: fixed;
+    width: 500px;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 200;
+    background: white;
+    padding: 48px 16px 160px 16px;
+    -webkit-box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.3);
+    -moz-box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.3);
+    box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.3);
+    overflow-y: scroll;
+}
+
+.component-info .close {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.component-info .content .code {
+    font-size: 13px;
+    tab-size: 2;
+    margin-top: 0;
+}
+
+.component-info .content .type, .component-info .content .id, .component-info .content .stages {
+    padding: 12px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.component-info .content .stages .stage {
+    display: inline-block;
+    background: #F3F4F6;
+    margin: -6px 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.component-info .content .file {
+    font-size: 12px;
+    background: rgb(248, 248, 255);
+    padding: 0.5em;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    border-bottom: 1px solid #E5E7EB;
+}

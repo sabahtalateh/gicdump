@@ -1,4 +1,4 @@
-.cell {
+.table.components .cell {
     position: relative;
     display: table-cell;
     vertical-align: top;
@@ -11,16 +11,16 @@
     cursor: default;
 }
 
-.cell.first {
+.table.components .cell.first {
     border-right-width: 6px;
 }
 
-.cell.selected {
+.table.components .cell.selected {
     background-color: #FDF6B2;
     border-color: #FACA15;
 }
 
-.cell.selected::before {
+.table.components .cell.selected::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -30,43 +30,43 @@
     height: calc(100% + 1px);
 }
 
-.cell.second.selected::before {
+.table.components .cell.second.selected::before {
     left: -6px;
 }
 
-.cell .name {
+.table.components .cell .name {
     font-size: 11px;
     background-color: #FDF6B2;
     display: inline-block;
 }
 
-.cell .type {
+.table.components .cell .type {
     font-size: 13px;
     display: inline-block;
 }
 
-.cell .actions {
+.table.components .cell .actions {
     position: absolute;
-    top: 6px;
+    top: calc(50% - 15px);
     right: 6px;
-    /*display: none;*/
+    display: none;
 }
 
-.cell:hover .actions {
+.table.components .cell:hover .actions {
     display: block;
 }
 
-.cell .actions .info {
+.table.components .cell .actions .info {
     cursor: pointer;
 }
 
-.cell .actions .info svg {
+.table.components .cell .actions .info svg {
     width: 30px;
     height: 30px;
     fill: #D1D5DB;
 }
 
-.cell.selected .actions .info svg {
+.table.components .cell.selected .actions .info svg {
     fill: #FACA15;
 }
 
@@ -79,7 +79,7 @@
 /*    max-width: 288px;*/
 /*}*/
 
-.cell .border {
+.table.components .cell .border {
     position: absolute;
     top: 100%;
     right: -1px;
@@ -88,12 +88,12 @@
     background-color: #E5E7EB;
 }
 
-.cell .border.first {
+.table.components .cell .border.first {
     width: 6px;
     right: -6px;
 }
 
-.cell .overlay {
+.table.components .cell .overlay {
     position: absolute;
     background: white;
     width: 100%;
@@ -105,7 +105,7 @@
     opacity: .65;
 }
 
-.cell .overlay .text {
+.table.components .cell .overlay .text {
     position: absolute;
     top: 50%;
     width: 100%;
