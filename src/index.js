@@ -2,7 +2,7 @@ import './index.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {BrowserRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 
 import App from './App'
 
@@ -15,8 +15,8 @@ export const stageImpls = window.data.stage_impls
 
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <App components={registry} files={files}/>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 )
