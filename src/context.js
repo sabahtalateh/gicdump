@@ -3,8 +3,6 @@ import React from 'react'
 import {registry} from './index'
 
 const expandComponent = ({table, setTable}) => ({col, type, id, infoOpened}) => {
-    console.log(infoOpened)
-
     let newTable = table.slice(0, col + 1)
     newTable[col].forEach((c) => {
         c.selected = c.type === type && c.id === id
@@ -17,10 +15,6 @@ const expandComponent = ({table, setTable}) => ({col, type, id, infoOpened}) => 
             type: c.type,
             id: c.id,
             infoOpened: infoOpened !== undefined && infoOpened.type === c.type && infoOpened.id === c.id,
-            // path: c.file,
-            // file: files[c.file_full_path],
-            // line_start: c.line_start,
-            // line_end: c.line_end,
         })))
     } else {
         newTable.push([])
