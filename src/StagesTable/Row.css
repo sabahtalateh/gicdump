@@ -37,8 +37,16 @@
 
 .table.stages .row.stages-header .cell .order {
     font-size: 12px;
+    padding-top: 4px;
+}
+
+.table.stages .row.stages-header .cell .order-caption {
+    font-size: 10px;
+}
+
+.table.stages .row.stages-header .cell .order-border {
     border-bottom: 1px solid #FACA15;
-    padding: 4px 0;
+    padding-top: 4px;
 }
 
 .table.stages .row.stages-header .cell .parallel {

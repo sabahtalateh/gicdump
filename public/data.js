@@ -46,18 +46,9 @@ var data = {
         "/Users/kravtsov777/Code/go/src/github.com/sabahtalateh/gic/tests/kind_of_real_project/service/mailing.go": ["package service", "", "import (", "\t\"fmt\"", "\t\"github.com/sabahtalateh/gic\"", "\t\"github.com/sabahtalateh/gic/tests/kind_of_real_project/repo\"", ")", "", "type Repo interface {", "\tSelect(int) string", "}", "", "type Mailing struct {", "\tuserRepo1 Repo", "\tuserRepo2 Repo", "}", "", "func (m *Mailing) Send() []string {", "\tvar (", "\t\tuu  []string", "\t\tout []string", "\t)", "", "\tfor i := 0; i \u003c 3; i++ {", "\t\tuu = append(uu, m.userRepo1.Select(i))", "\t}", "", "\tfor _, u := range uu {", "\t\tout = append(out, fmt.Sprintf(\"sending message to %s\", u))", "\t}", "", "\treturn out", "}", "", "var MailingID = gic.ID(\"Mailing\")", "", "func init() {", "\tgic.Add[*Mailing](", "\t\tgic.WithID(MailingID),", "\t\tgic.WithInit(func() *Mailing {", "\t\t\treturn \u0026Mailing{", "\t\t\t\tuserRepo1: gic.Get[*repo.UserRepo](gic.WithID(repo.Repo1)),", "\t\t\t\tuserRepo2: gic.Get[*repo.UserRepo](gic.WithID(repo.Repo2)),", "\t\t\t}", "\t\t}),", "\t)", "}", ""],
         "/Users/kravtsov777/Code/go/src/github.com/sabahtalateh/gic/tests/kind_of_real_project/system/db.go": ["package system", "", "import (", "\t\"github.com/sabahtalateh/gic\"", "\t\"github.com/sabahtalateh/gic/tests/kind_of_real_project/config\"", ")", "", "type DB struct {", "\tdsn string", "}", "", "func (d *DB) Query(q string) string {", "\tif q == \"select user where id = 1\" {", "\t\treturn \"Ivan\"", "\t}", "", "\tif q == \"select user where id = 2\" {", "\t\treturn \"Petr\"", "\t}", "", "\tif q == \"select user where id = 3\" {", "\t\treturn \"Vasisualiy\"", "\t}", "", "\treturn \"anonymous\"", "}", "", "func init() {", "\tgic.Add[*DB](", "\t\tgic.WithInit(func() *DB {", "\t\t\treturn \u0026DB{dsn: gic.Get[*config.Config]().DB.DSN}", "\t\t}),", "\t)", "}", ""]
     },
-    "stages": [{
-        "id": "Start", "order": "Init Order (same as components initialization)", "parallel": true
-    }, {
-        "id": "Stop",
-        "order": "(No Order)",
-        "parallel": true
-    }],
+    "stages": [{"id": "Start", "order": "InitOrder", "parallel": true}, {"id": "Stop", "order": "", "parallel": true}],
     "stage_impls": {
-        "Start": [{"type": "*config.Config", "id": ""}, {
-            "type": "*repo.UserRepo",
-            "id": "UserRepo1"
-        }],
-        "Stop": [{"type": "*config.Config", "id": ""}]
+        "Start": [{"type": "*config.Config", "id": ""}],
+        "Stop": [{"type": "*config.Config", "id": ""}],
     }
 }
