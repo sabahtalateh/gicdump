@@ -1,2 +1,2 @@
 resources:
-	go run resources.go
+	npm run build && go run resources.go

@@ -52,15 +52,12 @@ func main() {
 
 		content := string(bb)
 		content = strings.ReplaceAll(string(bb), "`", "`+\"`\"+`")
-		// content = strings.ReplaceAll(content, "\n", `\n`)
 
 		rr = append(rr, Resource{
-			File:    path,
+			File:    strings.TrimPrefix(path, "build/"),
 			Content: content,
 		})
 
-		// println(path)
-		// println(string(bb[:100]))
 		return nil
 	})
 
