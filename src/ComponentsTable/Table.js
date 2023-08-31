@@ -13,7 +13,7 @@ const findSelected = (components, dependencies) => {
     return ''
 }
 
-function ComponentsTable({data, rows}) {
+function ComponentsTable({data, rows, infoOpened}) {
     let out = []
 
     let totals = []
@@ -37,7 +37,7 @@ function ComponentsTable({data, rows}) {
         if (i === 0) {
             out.push(<Total key={`total-${i}`} data={totals}/>)
         }
-        out.push(<Row key={i} data={row} firstRow={i === 0} lastRow={i === rows - 1}/>)
+        out.push(<Row key={i} data={row} firstRow={i === 0} lastRow={i === rows - 1} infoOpened={infoOpened}/>)
     }
 
     return (<div className='table components'>{out}</div>);

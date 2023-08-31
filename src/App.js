@@ -19,8 +19,9 @@ import {stageTable} from "./stages";
 
 function App({components, files}) {
     const [componentsTable, setComponentsTable] = useState([
-        components.map((c) => ({type: c.type, id: c.id, selected: false}))
+        components.map((c) => ({type: c.type, id: c.id, selected: false, infoOpened: false}))
     ])
+    const [stgTable, setStgTable] = useState(stageTable(''))
 
     const loc = useLocation()
 
@@ -39,7 +40,10 @@ function App({components, files}) {
         }
     } else {
         searchValue = stageSearch
-        setSearchValue = setStageSearch
+        setSearchValue = function (search) {
+            setStageSearch(search);
+            setStgTable(stageTable(search))
+        }
     }
 
     const [componentInfo, setComponentInfo] = useState(undefined)
@@ -101,9 +105,13 @@ function App({components, files}) {
             </a>
         </header>
         <Routes>
-            <Route path='/' element={<ComponentsTable data={componentsTable} rows={components.length}/>}></Route>
-            <Route path='/stages' element={<StagesTable data={stageTable()}/>}></Route>
-            <Route path='*' element={<ComponentsTable data={componentsTable} rows={components.length}/>}></Route>
+            <Route path='/' element={
+                <ComponentsTable data={componentsTable} rows={components.length} infoOpened={componentInfo}/>}>
+            </Route>
+            <Route path='/stages' element={<StagesTable data={stgTable} infoOpened={componentInfo}/>}></Route>
+            <Route path='*' element={
+                <ComponentsTable data={componentsTable} rows={components.length} infoOpened={componentInfo}/>}>
+            </Route>
         </Routes>
     </Context.Provider>);
 }

@@ -37,6 +37,10 @@
     display: none;
 }
 
+.table.stages .cell .actions.opened {
+    display: block;
+}
+
 .table.stages .cell:hover .actions {
     display: block;
 }

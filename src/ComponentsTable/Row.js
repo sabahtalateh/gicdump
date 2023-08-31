@@ -4,13 +4,13 @@ import './Row.css'
 
 import {Cell, Empty} from './Cell'
 
-function Row({data, firstRow, lastRow}) {
+function Row({data, firstRow, lastRow, infoOpened}) {
     const topBorder = firstRow ? <div className='top-border'></div> : <></>
     return <div className='row'>
         {topBorder}
         {data.map((c, idx) => {
             if (c !== undefined && !c.empty_overlay) {
-                return <Cell key={idx} col={idx} data={c} selected={c.selected} lastRow={lastRow}/>
+                return <Cell key={idx} col={idx} data={c} selected={c.selected} lastRow={lastRow} infoOpened={infoOpened}/>
             } else {
                 const overlay = c !== undefined && c.empty_overlay
                 return <Empty key={idx} col={idx} border={lastRow} overlay={overlay}/>

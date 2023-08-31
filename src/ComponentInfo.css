@@ -35,11 +35,20 @@
 
 .component-info .content .stages .stage {
     display: inline-block;
+    position: relative;
     background: #F3F4F6;
     margin: -6px 6px;
-    padding: 6px 12px;
+    padding: 6px 12px 6px 30px;
     border-radius: 6px;
     font-weight: bold;
+}
+
+.component-info .content .stages .stage .icon svg {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 6px;
+    left: 6px;
 }
 
 .component-info .content .file {

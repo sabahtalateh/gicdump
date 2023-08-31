@@ -1,24 +1,18 @@
 import {Header, Row} from './Row'
 
-function StagesTable({data}) {
+function StagesTable({data, infoOpened}) {
     let out = []
-
-    // let totals = []
-    // for (let i = 0; i < data.length; i++) {
-    //     totals.push({
-    //         path: (i === 0) ? `Application ${Pluralize('Component', data[i].length)}` : findSelected(data[i - 1], data[i].length),
-    //         total: data[i].length,
-    //     })
-    // }
 
     let rows = 0
     for (let i = 0; i < data.length; i++) {
-        if (data[i].impls.length > rows) {
-            rows = data[i].impls.length
+        if (data[i].total > rows) {
+            rows = data[i].total
         }
     }
 
-    out.push(<Header key={0} data={data.map(d => ({id: d.id, order: d.order, parallel: d.parallel}))} firstRow={true}/>)
+    out.push(<Header key={0} data={data.map(d =>
+        ({id: d.id, order: d.order, parallel: d.parallel, total: d.impls.length})
+    )} firstRow={true}/>)
 
     for (let i = 0; i < rows; i++) {
         let row = []
@@ -30,7 +24,7 @@ function StagesTable({data}) {
             row.push(d)
         }
 
-        out.push(<Row key={i + 1} data={row} firstRow={i === 0} lastRow={i === rows - 1}/>)
+        out.push(<Row key={i + 1} data={row} firstRow={i === 0} lastRow={i === rows - 1} infoOpened={infoOpened}/>)
     }
 
     return (<div className='table stages'>{out}</div>);

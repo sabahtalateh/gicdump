@@ -47,17 +47,17 @@ var data = {
         "/Users/kravtsov777/Code/go/src/github.com/sabahtalateh/gic/tests/kind_of_real_project/system/db.go": ["package system", "", "import (", "\t\"github.com/sabahtalateh/gic\"", "\t\"github.com/sabahtalateh/gic/tests/kind_of_real_project/config\"", ")", "", "type DB struct {", "\tdsn string", "}", "", "func (d *DB) Query(q string) string {", "\tif q == \"select user where id = 1\" {", "\t\treturn \"Ivan\"", "\t}", "", "\tif q == \"select user where id = 2\" {", "\t\treturn \"Petr\"", "\t}", "", "\tif q == \"select user where id = 3\" {", "\t\treturn \"Vasisualiy\"", "\t}", "", "\treturn \"anonymous\"", "}", "", "func init() {", "\tgic.Add[*DB](", "\t\tgic.WithInit(func() *DB {", "\t\t\treturn \u0026DB{dsn: gic.Get[*config.Config]().DB.DSN}", "\t\t}),", "\t)", "}", ""]
     },
     "stages": [{
-        "id": "start", "order": "(No Order)", "parallel": true
+        "id": "Start", "order": "Init Order (same as components initialization)", "parallel": true
     }, {
-        "id": "stop",
+        "id": "Stop",
         "order": "(No Order)",
         "parallel": true
     }],
     "stage_impls": {
-        "start": [{"type": "*config.Config", "id": ""}, {
+        "Start": [{"type": "*config.Config", "id": ""}, {
             "type": "*repo.UserRepo",
             "id": "UserRepo1"
         }],
-        "stop": [{"type": "*config.Config", "id": ""}]
+        "Stop": [{"type": "*config.Config", "id": ""}]
     }
 }

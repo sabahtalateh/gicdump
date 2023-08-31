@@ -3,6 +3,7 @@ import {docco} from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 import './ComponentInfo.css'
 import XMarkIcon from './Icons/XMark'
+import ArrowsSpinIcon from "./Icons/ArrowsSpin";
 
 const Code = ({lines, start}) => {
     return <SyntaxHighlighter
@@ -24,7 +25,7 @@ const ComponentInfo = ({component, close}) => {
     const stages = (component.stages.length === 0) ?
         <div className='stages'>No Stages</div> :
         <div className='stages'>Stages: {component.stages.map((s, i) =>
-            <div key={i} className='stage'>{s.id}</div>
+            <div key={i} className='stage'><span className='icon'><ArrowsSpinIcon/></span>{s.id}</div>
         )}</div>
 
     return <div className='component-info'>

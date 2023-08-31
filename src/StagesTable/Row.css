@@ -5,14 +5,54 @@
     table-layout: fixed;
 }
 
+.table.stages .row .cell {
+    border-right-width: 6px;
+}
+
 .table.stages .row.stages-header .cell {
     background-color: #FDF6B2;
     border-color: #FACA15;
     border-top-width: 1px;
 }
 
-.table.stages .row .cell {
-    border-right-width: 6px;
+.table.stages .row.stages-header .cell .id {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #FACA15;
+    padding: 4px 0;
+}
+
+.table.stages .row.stages-header .cell .id .components-icon{
+    position: relative;
+    margin-right: 23px;
+}
+
+.table.stages .row.stages-header .cell .id .components-icon svg {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: -1px;
+}
+
+.table.stages .row.stages-header .cell .order {
+    font-size: 12px;
+    border-bottom: 1px solid #FACA15;
+    padding: 4px 0;
+}
+
+.table.stages .row.stages-header .cell .parallel {
+    font-size: 12px;
+    padding: 4px 0;
+}
+
+.table.stages .row.stages-header .cell .parallel-note {
+    font-size: 11px;
+    background: #F8B4B4;
+    color: #9B1C1C;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 6px;
 }
 
 .table.stages .row:nth-child(2n) {

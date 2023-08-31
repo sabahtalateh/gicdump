@@ -52,6 +52,10 @@
     display: none;
 }
 
+.table.components .cell .actions.opened {
+    display: block;
+}
+
 .table.components .cell:hover .actions {
     display: block;
 }

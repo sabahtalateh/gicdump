@@ -12,24 +12,30 @@ const name = (id) => {
     return id
 }
 
-function Cell({col, data, selected, lastRow}) {
+function Cell({col, data, selected, lastRow, infoOpened}) {
     const {expandComponent, shrinkComponent, toggleComponentInfo} = useContext(Context)
 
     const classSelected = (selected) ? 'selected' : ''
     const classFirst = (col === 0) ? 'first' : ''
     const classSecond = (col === 1) ? 'second' : ''
     const border = lastRow ? <div className={`border ${classFirst}`}></div> : <></>
+    const infoOpenedClass = (infoOpened !== undefined && (data.type === infoOpened.type && data.id === infoOpened.id)) ? 'opened' : ''
 
     return <div
         className={`cell ${classSelected} ${classFirst} ${classSecond}`}
         onClick={() => {
-            selected ? shrinkComponent({col}) : expandComponent({col, type: data.type, id: data.id})
+            selected ? shrinkComponent({col}) : expandComponent({
+                col,
+                type: data.type,
+                id: data.id,
+                infoOpened: (data.infoOpened) ? data : undefined,
+            })
         }}>
         <div className='name'>{name(data.id)}</div>
         <br/>
         <div className='type'>{data.type}</div>
-        <div className='actions'>
-            <div className='info'
+        <div className={`actions ${infoOpenedClass}`}>
+            <div className={`info ${infoOpenedClass}`}
                  onClick={(e) => {
                      e.stopPropagation()
                      toggleComponentInfo({type: data.type, id: data.id})
