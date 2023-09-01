@@ -1,6 +1,6 @@
-import {useContext} from 'react'
-
 import './Cell.css'
+
+import {useContext} from 'react'
 
 import {Context} from '../context'
 import InfoIcon from '../Icons/Info'
@@ -18,8 +18,8 @@ function Cell({data, lastRow, infoOpened}) {
     const border = lastRow ? <div className={`border`}></div> : <></>
     const infoOpenedClass = (infoOpened !== undefined && (data.type === infoOpened.type && data.id === infoOpened.id)) ? 'opened' : ''
 
-    return <div
-        className={`cell`}>
+    return <div className={`cell`}>
+        <div className='order'>[{data.order}]</div>
         <div className='name'>{name(data.id)}</div>
         <br/>
         <div className='type'>{data.type}</div>

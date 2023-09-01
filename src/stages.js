@@ -1,4 +1,4 @@
-import {stageImpls, stages} from './index'
+import {registry, stageImpls, stages} from './index'
 
 const stageTable = (filter) => {
     filter = filter.toLowerCase()
@@ -10,6 +10,10 @@ const stageTable = (filter) => {
                 const type = i.type.toLowerCase()
                 const id = i.id.toLowerCase()
                 return type.includes(filter) || id.includes(filter)
+            })
+            impls.forEach(i => {
+                const comp = registry.find(c => c.type === i.type && c.id === i.id)
+                i.order = comp.order
             })
             total = impls.length
         }

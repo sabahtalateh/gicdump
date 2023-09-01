@@ -28,7 +28,7 @@
     margin-top: 0;
 }
 
-.component-info .content .type, .component-info .content .id, .component-info .content .stages {
+.component-info .content .type, .component-info .content .id, .component-info .content .stages, .component-info .content .init-order {
     padding: 12px;
     border-bottom: 1px solid #E5E7EB;
 }

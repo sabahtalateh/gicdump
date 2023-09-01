@@ -14,6 +14,7 @@ const expandComponent = ({table, setTable}) => ({col, type, id, infoOpened}) => 
         newTable.push(deps.map((c) => ({
             type: c.type,
             id: c.id,
+            order: c.order,
             infoOpened: infoOpened !== undefined && infoOpened.type === c.type && infoOpened.id === c.id,
         })))
     } else {

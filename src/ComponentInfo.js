@@ -33,6 +33,7 @@ const ComponentInfo = ({component, close}) => {
         <div className='content'>
             <div className='type'>Type: <b>{component.type}</b></div>
             <div className='id'>ID: <b>{id}</b></div>
+            <div className='init-order'>Init Order: <b>{component.order}</b></div>
             {stages}
             <div className='file'>{component.file}</div>
             <div className='code'>{code}</div>

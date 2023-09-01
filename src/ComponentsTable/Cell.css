@@ -40,6 +40,13 @@
     display: inline-block;
 }
 
+.table.components .cell .order {
+    font-size: 11px;
+    background-color: #FDF6B2;
+    display: inline-block;
+    margin-right: 4px;
+}
+
 .table.components .cell .type {
     font-size: 13px;
     display: inline-block;

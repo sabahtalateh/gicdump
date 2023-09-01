@@ -14,12 +14,12 @@ import ArrowsSpinIcon from './Icons/ArrowsSpin'
 import Search from './Search'
 import ComponentInfo from './ComponentInfo'
 import {componentStages, filterComponents} from './components'
-import {stages} from "./index";
-import {stageTable} from "./stages";
+import {stages} from './index'
+import {stageTable} from './stages'
 
 function App({components, files}) {
     const [componentsTable, setComponentsTable] = useState([
-        components.map((c) => ({type: c.type, id: c.id, selected: false, infoOpened: false}))
+        components.map((c) => ({type: c.type, id: c.id, order: c.order, selected: false, infoOpened: false}))
     ])
     const [stgTable, setStgTable] = useState(stageTable(''))
 
@@ -76,6 +76,7 @@ function App({components, files}) {
                 setComponentInfo({
                     type: component.type,
                     id: component.id,
+                    order: component.order,
                     file: component.file,
                     lines: lines,
                     start_line: startLine,

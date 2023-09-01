@@ -31,6 +31,7 @@ function Cell({col, data, selected, lastRow, infoOpened}) {
                 infoOpened: (data.infoOpened) ? data : undefined,
             })
         }}>
+        <div className='order'>[{data.order}]</div>
         <div className='name'>{name(data.id)}</div>
         <br/>
         <div className='type'>{data.type}</div>

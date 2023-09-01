@@ -16,6 +16,7 @@ const filterComponents = ({components, search, selected}) => {
     return filtered.map(c => ({
         type: c.type,
         id: c.id,
+        order: c.order,
         selected: selected !== undefined && c.type === selected.type && c.id === selected.id,
     }))
 }

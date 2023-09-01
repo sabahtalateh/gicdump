@@ -25,6 +25,13 @@
     display: inline-block;
 }
 
+.table.stages .cell .order {
+    font-size: 11px;
+    background-color: #FDF6B2;
+    display: inline-block;
+    margin-right: 4px;
+}
+
 .table.stages .cell .type {
     font-size: 13px;
     display: inline-block;
